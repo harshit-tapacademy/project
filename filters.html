@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .toggle-filters-checkbox {
+        display: none;
+      }
+
+      .filter-icon {
+        display: block;
+        margin: 20px;
+        cursor: pointer;
+      }
+
+      .filter-icon img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .container {
+        display: flex;
+      }
+
+      .filter-section {
+        width: 250px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: -280px; /* Initially hidden off-screen */
+        height: 100%;
+        overflow-y: auto;
+        transition: left 0.3s ease-in-out;
+        /* z-index: 1000; */
+      }
+
+      .toggle-filters-checkbox:checked ~ .container .filter-section {
+        left: 0; /* Slide in the filter section */
+      }
+
+      .products {
+        flex-grow: 1;
+        margin-left: 280px; /* Adjust based on the width of the filter section */
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        transition: margin-left 0.3s ease-in-out;
+      }
+
+      .toggle-filters-checkbox:checked ~ .container .products {
+        margin-left: 280px; /* Ensure products move to the right when the filter section slides in */
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="checkbox"
+      id="toggle-filters"
+      class="toggle-filters-checkbox"
+    />
+    <label for="toggle-filters" class="filter-icon">
+      <img src="filter-icon.png" alt="Filter Icon" />
+    </label>
+
+    <div class="container">
+      <aside class="filter-section">
+        <h3>Filters</h3>
+        <div class="filter-group">
+          <h4>Categories</h4>
+          <label><input type="checkbox" /> Category 1</label>
+          <label><input type="checkbox" /> Category 2</label>
+          <label><input type="checkbox" /> Category 3</label>
+        </div>
+        <div class="filter-group">
+          <h4>Brands</h4>
+          <label><input type="checkbox" /> Brand 1</label>
+          <label><input type="checkbox" /> Brand 2</label>
+          <label><input type="checkbox" /> Brand 3</label>
+        </div>
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <input type="range" min="0" max="1000" value="500" />
+          <div class="price-value">₹500</div>
+        </div>
+        <div class="filter-group">
+          <h4>Colors</h4>
+          <label><input type="checkbox" /> Red</label>
+          <label><input type="checkbox" /> Blue</label>
+          <label><input type="checkbox" /> Green</label>
+        </div>
+        <div class="filter-group">
+          <h4>Discounts</h4>
+          <label><input type="radio" name="discount" /> 10% or more</label>
+          <label><input type="radio" name="discount" /> 20% or more</label>
+          <label><input type="radio" name="discount" /> 30% or more</label>
+        </div>
+      </aside>
+
+      <div class="products">
+        <!-- Product cards go here -->
+      </div>
+    </div>
+  </body>
+</html>
